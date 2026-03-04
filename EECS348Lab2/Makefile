@@ -1,19 +1,16 @@
-# This is a comment line
-CC=gcc
-# CFLAGS will be the options passed to the compiler.
-CFLAGS= -c -Wall
-OBJFILES= 
+# CC=gcc
 
-all: prog
+# main: main.o isEven.o 
+# 	$(CC) main.o isEven.o -o main
 
-prog: main.c isEven.c isEven.h 
-	$(CC) main.c isEven.c isEven.h -o prog
+# main.o: main.c
+# 	$(CC) main.c
 
-main.o: main.c
-	$(CC) $(CFLAGS) main.c
+#isEven.o: isEven.c
+# 	$(CC) isEven.c
 
-isEven.o: isEven.c
-	$(CC) $(CFLAGS) isEven.c
+main.o: isEven.c isOdd.c main.c 
+	gcc isEven.c isOdd.c main.c -o main.o
 
 clean:
-	rm -rf *.o
+	rm -rf *.o 
