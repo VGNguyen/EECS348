@@ -1,0 +1,9 @@
+[submodule "EECS348-Lab-2"]
+	path = EECS348-Lab-2
+	url = https://github.com/VGNguyen/EECS348-Lab2
+[submodule "EECS348-Lab1"]
+	path = EECS348-Lab1
+	url = https://github.com/VGNguyen/EECS348-Lab1
+[submodule "EECS348-Lab4"]
+	path = EECS348-Lab4
+	url = https://github.com/VGNguyen/EECS348-Lab4
