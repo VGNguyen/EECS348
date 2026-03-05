@@ -6,4 +6,4 @@ assignment1: sales.c
 #assignment2: temperature_converter.c
 #	gcc temperature_converter.c -o assignment2
 clean:
-#	rm -rf assignment1 assignment2
+	rm -rf assignment1 assignment2
