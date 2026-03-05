@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdbool.h>
 
 
 int main(){
@@ -51,10 +51,11 @@ int main(){
         sum+=store[i];
     }
     sum = sum/12;
+    printf("\nSales summary report: \n \n");
     printf("Maximum Sales %.2f (%s) \n", max, months[max_index]);
     printf("Minimum Sales %.2f (%s) \n", min, months[min_index]);
     printf("Average Sales %.2f \n", sum);
-
+    printf("\nSix-Month moving average report: \n \n");
     for(int i =0; i<7;i++){
         float temp_sum=0;
         for(int j =i;j<i+6;j++){
@@ -62,6 +63,37 @@ int main(){
         }
         temp_sum= temp_sum/6;
         printf("%s-%s %.2f \n",months[i],months[i+5],temp_sum);
+    }
+    int largest[12];
+    int i = 0;
+    
+    while(i<12){
+        float temp_large = 0;
+        int temp_index;
+        for (int j = 0; j<12;j++){
+            if(store[j]>temp_large){
+                bool inList = false;
+                for(int l =0; l<i;l++){
+                    if(largest[l]==j){
+                        inList=true;
+                    }
+                }
+                if(inList){
+
+                }else{
+                    temp_large=store[j];
+                    temp_index = j;
+                }
+
+            }
+        }
+        largest[i] = temp_index;
+        i++;
+    }
+    printf("\nSales report (highest to lowest): \n \n");
+    printf("Month   Sales \n");
+    for(int j = 0; j<12;j++){
+        printf("%s   $%.2f \n",months[largest[j]],store[largest[j]]);
     }
     fclose(fptr); 
     return 0;
