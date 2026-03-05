@@ -34,22 +34,35 @@ int main(){
     }
 
     float max = store[0];
+    int max_index = 0;
     float min = store[0];
+    int min_index =0;
     float sum= 0;
     for(int i =0; i<12;i++){
         if(store[i]<min){
             min= store[i];
+            min_index=i;
+
         }
         if(store[i]>max){
             max= store[i];
+            max_index=i;
         }
         sum+=store[i];
     }
     sum = sum/12;
-    printf("Maximum Sales %.2f \n", max);
-    printf("Minimum Sales %.2f \n", min);
+    printf("Maximum Sales %.2f (%s) \n", max, months[max_index]);
+    printf("Minimum Sales %.2f (%s) \n", min, months[min_index]);
     printf("Average Sales %.2f \n", sum);
 
+    for(int i =0; i<7;i++){
+        float temp_sum=0;
+        for(int j =i;j<i+6;j++){
+            temp_sum+=store[j];
+        }
+        temp_sum= temp_sum/6;
+        printf("%s-%s %.2f \n",months[i],months[i+5],temp_sum);
+    }
     fclose(fptr); 
     return 0;
 }
