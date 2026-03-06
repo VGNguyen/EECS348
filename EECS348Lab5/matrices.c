@@ -42,10 +42,10 @@ void multiplyMatrices(int r, int c,int arr[r][c], int r2, int c2,int arr2[r2][c2
     }else {
         int arr3[r][c2];
         for (int i = 0; i <r; i++){
-            for(int j =0; j<c;j++){
+            for(int j =0; j<c2;j++){
                 int temp = 0;
-                for (int k = 0; k < c2; k++){
-                    temp = temp + (arr[i][j])*(arr2[j][k]);
+                for (int k = 0; k < c; k++){
+                    temp += (arr[i][k])*(arr2[k][j]);
 
                 }
                 arr3[i][j] = temp;
