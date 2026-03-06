@@ -2,7 +2,7 @@
 #define SIZE 5
 void addMatrices(int r, int c,int arr1[r][c],int arr2[r][c]);
 void multiplyMatrices(int r, int c,int arr[r][c], int r2, int c2,int arr2[r2][c2]);
-//void transposeMatrix(int r, int c,int arr[r][c]);
+void transposeMatrix(int r, int c,int arr[r][c]);
 void print_Matrices(int r, int c,int arr[r][c]);
 
 int main(){
@@ -20,9 +20,12 @@ int main(){
     {10, 9, 8, 7, 6},
     {5, 4, 3, 2, 1}
     };
-
+    printf("Adding m1 and m2: \n");
     addMatrices(SIZE,SIZE,m1,m2);
+    printf("Multiplying m1 and m2: \n");
     multiplyMatrices(SIZE,SIZE,m1,SIZE,SIZE,m2);
+    printf("Transposing m1: \n");
+    transposeMatrix(SIZE,SIZE,m1);
     return 0;
 }
 
@@ -36,6 +39,7 @@ void addMatrices(int r, int c,int arr1[r][c],int arr2[r][c]){
     }
     print_Matrices(r,c,arr3);
 }
+
 void multiplyMatrices(int r, int c,int arr[r][c], int r2, int c2,int arr2[r2][c2]){
     if(c!=r2){
         printf("Cannot multiply these matrices \n");
@@ -56,9 +60,18 @@ void multiplyMatrices(int r, int c,int arr[r][c], int r2, int c2,int arr2[r2][c2
         }
         print_Matrices(r,c2,arr3);
     }
-    
-
 }
+
+void transposeMatrix(int r, int c,int arr[r][c]){
+    int arr2[c][r];
+    for(int i =0; i<r;i++){
+        for(int j =0; j<c;j++){
+            arr2[j][i]=arr[i][j];
+        }
+    }
+    print_Matrices(c,r,arr2);
+}
+
 
 void print_Matrices(int r, int c,int arr[r][c]){
     for (int i = 0; i<r;i++){
