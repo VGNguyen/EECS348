@@ -23,18 +23,22 @@
 <?php
 
     $upperLimit = $_POST["upperLimit"];
-    echo "&nbsp&nbsp&nbsp";
+    
+    echo "<table border=1><tr><td></td>";
     for($i=1; $i <= $upperLimit; $i++){
         
-        echo $i . " ";
+        echo "<td>$i</td>";
     }
-    echo nl2br("\n");
+    echo "</tr>";
+
     for($i=1; $i <= $upperLimit; $i++){
-        echo $i . "   ";
+        echo "<tr>";
+        echo "<td>$i</td>";
         for($j=1; $j <= $upperLimit; $j++){
-        echo $i*$j . " ";
+        $temp = $i*$j;
+        echo "<td>$temp</td>";
     }
-    echo nl2br("\n");
+    echo "</tr>";
     }
 
 ?>
