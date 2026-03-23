@@ -10,76 +10,105 @@ private:
 
 public:
   // 1. Read values from stdin into a matrix
-  void readFromStdin();
+  void readFromStdin(ifstream &inFile){
+    
+    for (int i = 0; i<SIZE;i++){
+      for(int j = 0; j<SIZE;j++){
+        inFile >> data[i][j];
+      }
+    }
+    
+  }
+  
 
   // 2. Display a matrix
   void display() const {
-        for (int i = 0; i<SIZE;i++){
-          for(int j = 0; j<SIZE;j++){
-              std::cout <<data[i][j];
-        }
-        std::cout << "\n" ;
+      for (int i = 0; i<SIZE;i++){
+        for(int j = 0; j<SIZE;j++){
+            std::cout <<data[i][j] << " ";
+      }
+      std::cout << "\n" ;
     }
-  };
+  }
     
 
   // 3. Add two matrices (operator overloading for +)
   Matrix operator+(const Matrix& other) const {
     //Define a third matrix
-    int arr3[SIZE][SIZE];
+    Matrix arr3;
+    
     //Loop through every value and add up arr1 and arr2 at that place and put that into arr3
     for (int i=0; i<SIZE;i++){
         for(int j = 0; j<SIZE;j++){
-            arr3[i][j] = data[i][j]+other[i][j];
+            arr3.data[i][j] = data[i][j]+other.data[i][j];
         }
         
     }
     //print the completed added matrix arr3
-    display(arr3);
-  };
+    arr3.display();
+  }
 
   // 4. Multiply two matrices (operator overloading for *)
   Matrix operator*(const Matrix& other) const {
         //Define new third array to store values that is the size of arr1's rows and arr2's columns
-        int arr3[SIZE][SIZE];
+        Matrix arr3;
         
         for (int i = 0; i <SIZE; i++){
             for(int j =0; j<SIZE;j++){
                 //Matrix multiplication has you multiple each value in a row, add those values together, and then place them in the multiplied array
                 int temp = 0;
                 for (int k = 0; k < SIZE; k++){
-                    temp += (data[i][k])*(other[k][j]);
+                    temp += (data[i][k])*(other.data[k][j]);
 
                 }
                 //Set the value in the matrix to the temp value and reset temp
-                arr3[i][j] = temp;
+                arr3.data[i][j] = temp;
                 temp = 0;
                 
             }
             
         }
         //Print out the completed result
-        display(arr3);
-  };
+        arr3.display();
+  }
 
   // 5. Compute the sum of matrix diagonal elements
-  int sumOfDiagonals() const;
+  int sumOfDiagonals() const{
+    int sum = 0;
+    for(int i = 0; i<SIZE;i++){
+      sum+=data[i][i];
+    }
+    std::cout << sum;
+  }
 
   // 6. Swap matrix rows
-  void swapRows(int row1, int row2);  
+  void swapRows(int row1, int row2){
+    int temp[SIZE];
+    for(int i=0; i < SIZE; i++){
+      temp[i]=data[row1][i];
+    }
+    for(int i=0; i < SIZE; i++){
+      data[row2][i] = data[row1][i];
+    }
+    for(int i=0; i < SIZE; i++){
+      data[row2][i] = temp[i];
+    }
+  }
 };
 
 int main() {
+  ifstream inFile;
+  inFile.open("matrix-data.txt");
   // Example usage:
   Matrix mat1;
   cout << "Enter values for Matrix 1:" << endl;
-  mat1.readFromStdin();
+  mat1.readFromStdin(inFile);
   cout << "Matrix 1:" << endl;
   mat1.display();
 
   Matrix mat2;
   cout << "Enter values for Matrix 2:" << endl;
-  mat2.readFromStdin();
+  mat2.readFromStdin(inFile);
   cout << "Matrix 2:" << endl;
   mat2.display();
 
@@ -96,6 +125,6 @@ int main() {
   mat1.swapRows(0, 2);
   cout << "Matrix 1 after swapping rows:" << endl;
   mat1.display();
-
+  inFile.close();
   return 0;
 }
