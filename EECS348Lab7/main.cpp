@@ -11,7 +11,8 @@ private:
 public:
   // 1. Read values from stdin into a matrix
   void readFromStdin(ifstream &inFile){
-    
+    //Pass in the open file with &inFile so that each call of the function will continue where the last one left off 
+    //Load each value into the data 2d array
     for (int i = 0; i<SIZE;i++){
       for(int j = 0; j<SIZE;j++){
         inFile >> data[i][j];
@@ -23,6 +24,7 @@ public:
 
   // 2. Display a matrix
   void display() const {
+    //Loop through each row and print each value and then add newline, repeat for each line
       for (int i = 0; i<SIZE;i++){
         for(int j = 0; j<SIZE;j++){
             std::cout <<data[i][j] << " ";
@@ -44,7 +46,7 @@ public:
         }
         
     }
-    //print the completed added matrix arr3
+    //return added array
     return arr3;
   }
 
@@ -67,13 +69,14 @@ public:
             }
             
         }
-        //Print out the completed result
+        //return completed array
         return arr3;
   }
 
   // 5. Compute the sum of matrix diagonal elements
   int sumOfDiagonals() const{
     int sum = 0;
+    //The diagonal has the same column and row i so loop through the size of array and add each of those up into sum
     for(int i = 0; i<SIZE;i++){
       sum+=data[i][i];
     }
@@ -83,12 +86,15 @@ public:
   // 6. Swap matrix rows
   void swapRows(int row1, int row2){
     int temp[SIZE];
+    //Load each value from the first row individually into a temp array
     for(int i=0; i < SIZE; i++){
       temp[i]=data[row1][i];
     }
+    //Replace row1's values with row2's values
     for(int i=0; i < SIZE; i++){
       data[row1][i] = data[row2][i];
     }
+    //Replace row2 values with the values stored in temp
     for(int i=0; i < SIZE; i++){
       data[row2][i] = temp[i];
     }
@@ -96,6 +102,7 @@ public:
 };
 
 int main() {
+  //Use ifstream and open the file with the data
   ifstream inFile;
   inFile.open("matrix-data.txt");
   // Example usage:
@@ -124,6 +131,7 @@ int main() {
   mat1.swapRows(0, 2);
   cout << "Matrix 1 after swapping rows:" << endl;
   mat1.display();
+  //Make sure to close the file
   inFile.close();
   return 0;
 }
