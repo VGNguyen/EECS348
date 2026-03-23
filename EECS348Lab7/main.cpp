@@ -87,7 +87,7 @@ public:
       temp[i]=data[row1][i];
     }
     for(int i=0; i < SIZE; i++){
-      data[row2][i] = data[row1][i];
+      data[row1][i] = data[row2][i];
     }
     for(int i=0; i < SIZE; i++){
       data[row2][i] = temp[i];
