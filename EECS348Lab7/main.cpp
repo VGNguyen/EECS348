@@ -45,14 +45,13 @@ public:
         
     }
     //print the completed added matrix arr3
-    arr3.display();
+    return arr3;
   }
 
   // 4. Multiply two matrices (operator overloading for *)
   Matrix operator*(const Matrix& other) const {
         //Define new third array to store values that is the size of arr1's rows and arr2's columns
         Matrix arr3;
-        
         for (int i = 0; i <SIZE; i++){
             for(int j =0; j<SIZE;j++){
                 //Matrix multiplication has you multiple each value in a row, add those values together, and then place them in the multiplied array
@@ -69,7 +68,7 @@ public:
             
         }
         //Print out the completed result
-        arr3.display();
+        return arr3;
   }
 
   // 5. Compute the sum of matrix diagonal elements
@@ -78,7 +77,7 @@ public:
     for(int i = 0; i<SIZE;i++){
       sum+=data[i][i];
     }
-    std::cout << sum;
+    return sum;
   }
 
   // 6. Swap matrix rows
