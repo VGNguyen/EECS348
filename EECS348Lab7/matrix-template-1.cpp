@@ -1,6 +1,5 @@
-
 #include <iostream>
-
+#include <fstream> 
 using namespace std;
 
 const int SIZE = 4; // Global variable for matrix size
@@ -14,19 +13,60 @@ public:
   void readFromStdin();
 
   // 2. Display a matrix
-  void display() const;
+  void display() const {
+        for (int i = 0; i<SIZE;i++){
+          for(int j = 0; j<SIZE;j++){
+              std::cout <<data[i][j];
+        }
+        std::cout << "\n" ;
+    }
+  };
+    
 
   // 3. Add two matrices (operator overloading for +)
-  Matrix operator+(const Matrix& other) const;
+  Matrix operator+(const Matrix& other) const {
+    //Define a third matrix
+    int arr3[SIZE][SIZE];
+    //Loop through every value and add up arr1 and arr2 at that place and put that into arr3
+    for (int i=0; i<SIZE;i++){
+        for(int j = 0; j<SIZE;j++){
+            arr3[i][j] = data[i][j]+other[i][j];
+        }
+        
+    }
+    //print the completed added matrix arr3
+    display(arr3);
+  };
 
   // 4. Multiply two matrices (operator overloading for *)
-  Matrix operator*(const Matrix& other) const;
+  Matrix operator*(const Matrix& other) const {
+        //Define new third array to store values that is the size of arr1's rows and arr2's columns
+        int arr3[SIZE][SIZE];
+        
+        for (int i = 0; i <SIZE; i++){
+            for(int j =0; j<SIZE;j++){
+                //Matrix multiplication has you multiple each value in a row, add those values together, and then place them in the multiplied array
+                int temp = 0;
+                for (int k = 0; k < SIZE; k++){
+                    temp += (data[i][k])*(other[k][j]);
+
+                }
+                //Set the value in the matrix to the temp value and reset temp
+                arr3[i][j] = temp;
+                temp = 0;
+                
+            }
+            
+        }
+        //Print out the completed result
+        display(arr3);
+  };
 
   // 5. Compute the sum of matrix diagonal elements
   int sumOfDiagonals() const;
 
   // 6. Swap matrix rows
-  void swapRows(int row1, int row2);
+  void swapRows(int row1, int row2);  
 };
 
 int main() {
